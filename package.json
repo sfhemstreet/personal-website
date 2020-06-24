@@ -4,7 +4,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel ./src/pages/index.html ./src/pages/contact.html ./src/pages/about.html",
-    "build": "rm -rf dist && parcel build ./src/pages/index.html ./src/pages/contact.html ./src/pages/about.html --no-source-maps --out-dir docs",
+    "build": "rm -rf dist && rm -rf docs && parcel build ./src/pages/index.html ./src/pages/contact.html ./src/pages/about.html --no-source-maps --out-dir docs",
     "watch": "parcel watch index.html"
   },
   "devDependencies": {
