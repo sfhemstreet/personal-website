@@ -10,18 +10,16 @@ import {
   getElements,
 } from "./helpers";
 
-const TITLE_DATA = {
-  name: "SPENCER_HEMSTREET",
-  skillSet: "FRONT_END",
-  jobStatus: "OPEN_TO_OPPORTUNITIES",
-};
-
 // Time fom last intro view in ms
 const INTRO_WAIT_TIME = 60000 * 3;
 // Key used to check and set intro view time in storage
 const INTRO_STORAGE_KEY = "aaepeeseec";
 
-export type TitleData = typeof TITLE_DATA;
+export type TitleData = {
+  name: string;
+  skillSet: string;
+  jobStatus: string;
+};
 
 window.addEventListener("load", homePage, false);
 
@@ -29,8 +27,13 @@ window.addEventListener("load", homePage, false);
  * Controls homepage animations and mounting of content.
  */
 function homePage() {
-  const showIntro: boolean = getHasViewedIntro();
+  const TITLE_DATA: TitleData = {
+    name: "SPENCER_HEMSTREET",
+    skillSet: "FRONT_END",
+    jobStatus: "OPEN_TO_OPPORTUNITIES",
+  };
 
+  const showIntro: boolean = getHasViewedIntro();
   if (showIntro) {
     const typewriterText = Object.keys(TITLE_DATA).map(
       (key) => `${key}: ${TITLE_DATA[key as keyof TitleData]}`
@@ -76,25 +79,29 @@ function homePage() {
     fadeSpecialElement(projectsButton);
     fadeElement(projectsButtonGradient);
 
+    // Wait for elements to fade out before removing them.
     setTimeout(() => {
       hideElement(addressElement);
       hideElement(projectsButton);
       hideElement(projectsButtonGradient);
 
+      // Append projects to document fragment, then append fragment to main element.
+      const docFrag = document.createDocumentFragment();
       PROJECTS.forEach((proj) => {
         const projDoc = createProject(proj);
-        mainElement.appendChild(projDoc);
+        docFrag.appendChild(projDoc);
       });
+      mainElement.appendChild(docFrag);
 
-      // Apply scoll FX to each project
-      const projContainers = Array.from(mainElement.getElementsByClassName("project"));
+      // Apply scoll FX to each div in each project.
+      const projContainers = mainElement.querySelectorAll(".project");
       let projDivs: Element[] = [];
-      projContainers.forEach(container => {
-        projDivs.push(...Array.from(container.querySelectorAll("div")))
+      projContainers.forEach((container) => {
+        projDivs.push(...Array.from(container.querySelectorAll("div")));
       });
-
       ScrollerFx(projDivs, "scroll-fx", "see-thru");
 
+      // Show back button and add event listener to remove projects
       revealElement(backButton);
       backButton.addEventListener("click", onClickBackButton, false);
     }, 1400);
@@ -215,27 +222,27 @@ function createTitle(titleData: TitleData): DocumentFragment {
  * @param project
  */
 function createProject(project: Project): DocumentFragment {
-  // makes project title section with links
+  // Makes project title section with links.
   const makeTitle = (name: string, gitURL: string, liveURL?: string) => {
     const title = document.createElement("h1");
     title.textContent = name;
 
+    // Creates "a" tag element.
     const makeLink = (url: string, text: string) => {
       const link = document.createElement("a");
-
       link.textContent = text;
       link.href = url;
       link.rel = "noreferrer";
       link.target = "_blank";
-
       return link;
     };
 
     const githubLink = makeLink(gitURL, "Code");
     githubLink.classList.add("project-github");
 
+    // Not all projects have live links, check first.
     const liveLink = liveURL ? makeLink(liveURL, "Live") : null;
-    if (liveURL && liveLink) {
+    if (liveLink) {
       liveLink.classList.add("project-live");
     }
 
@@ -243,7 +250,6 @@ function createProject(project: Project): DocumentFragment {
     linkContainer.appendChild(githubLink);
     if (liveLink) linkContainer.appendChild(liveLink);
 
-    // container for the title and links
     const titleContainer = document.createElement("div");
     titleContainer.classList.add("project-title");
     titleContainer.appendChild(title);
@@ -252,7 +258,7 @@ function createProject(project: Project): DocumentFragment {
     return titleContainer;
   };
 
-  // Creates a div with title and paragraph
+  // Creates a div with title and paragraph.
   const makeSection = (title: string, content: string) => {
     const section = document.createElement("div");
     section.classList.add("project-section");
@@ -323,7 +329,6 @@ function createProject(project: Project): DocumentFragment {
     difficulties,
     solution,
   ].forEach((el) => container.appendChild(el));
-
   docFrag.appendChild(container);
 
   return docFrag;
@@ -336,7 +341,7 @@ function createProject(project: Project): DocumentFragment {
  * @param typeWriterText
  * @param onComplete
  */
-export function typeWriterEffectIntro(
+function typeWriterEffectIntro(
   typeWriterText: string[],
   onComplete: () => void
 ) {

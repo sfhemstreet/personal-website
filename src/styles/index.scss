@@ -81,21 +81,28 @@ main {
   }
 }
 
+.projects-title {
+  
+  animation: fade-in 400ms linear 0ms 1 normal both;
+  top: 60px;
+  left: calc(50% - 80px);
+}
+
 .project {
   display: block;
 
-  border-bottom: double theme.$dark-onSurfaceLowEmphasis;
+  //border-bottom: double theme.$dark-onSurfaceLowEmphasis;
 
   animation: fade-in 800ms ease-in-out 0ms 1 normal both;
 
-  margin: 20px 0px 120px 0px;
+  margin: 30px 0px;
 
   column-width: 500px;
   column-count: 2;
   column-gap: 30px;
 
   max-width: 100%;
-  min-height: 95vh;
+  min-height: 85vh;
 
   .project-title {
     display: flex;
@@ -191,8 +198,18 @@ main {
   margin: 0px;
   border: 1px solid theme.$dark-onSurfaceLowEmphasis;
 
+  color: theme.$backgroundColor;
+  background-color: theme.$dark-onSurfaceHighEmphasis;
+
+  cursor: pointer;
+  transition: all 200ms;
+
   @media (max-width: 600px) {
     right: 10px;
+  }
+
+  &:hover {
+    background-color: theme.$dark-onSurfaceMaxEmphasis;
   }
 }
 
@@ -376,19 +393,19 @@ address {
 .scroll-fx {
   opacity: 0;
   transition: all 1000ms;
-  animation: scroll-in 1000ms linear 200ms 1 normal both;
+  animation: scroll-in 1000ms linear 100ms 1 normal both;
 }
 
 @keyframes scroll-in {
   0% {
     opacity: 0;
-    filter: hue-rotate(200deg) blur(2px) brightness(0);
     transform: translateY(100px) skewY(-3deg);
+    //filter: hue-rotate(200deg) blur(2px) brightness(0);
   }
   100% {
     opacity: 1;
     transform: translateY(0px) skewY(0deg);
-    filter: hue-rotate(0deg) blur(0px) brightness(1);
+    //filter: hue-rotate(0deg) blur(0px) brightness(1);
   }
 }
 

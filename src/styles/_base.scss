@@ -99,6 +99,17 @@ header {
   padding: 85px 0px 0px 0px;
 }
 
+noscript {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  a {
+    color: goldenrod;
+  }
+}
+
 @keyframes fade-in {
   from {
     opacity: 0;

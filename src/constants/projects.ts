@@ -100,15 +100,18 @@ export const mapAndWeather: Project = {
     },
   ],
   technologies: ["Leaflet.js", "React.js", "TypeScript", "OpenWeatherMap API"],
-  difficulties: `Integrating Leaflet.js into React.
-                Note - this project can't be hosted live, as the weather API I am using costs money when put online.
-                Check it out on GitHub, you can download, install and run it locally.`,
-  solution: `Wrote a simple reusable component for rendering a leaflet map.`,
+  difficulties: `Integrating Leaflet.js into React and finding the various map tiles and weather APIs needed. 
+                I was able to find excellent map tiles and layers to show wind, precipitation, etc, but the 5 day weather 
+                data is only free over HTTP, not HTTPS.`,
+  solution: `I wrote a reusable component for rendering a Leaflet map, with an simple API 
+            to only add what was needed for the project.  I am not going to pay for the weather data for this side project
+            so this project is not live. If you'd like to view it in a demo you can click the 'code' link above 
+            and follow the directions.`,
   features: [
     "Responsive layout",
     "Multiple map settings",
     "Weather imaging",
-    "Search and filter list of points of interest",
+    "Search and filter list",
   ],
   githubLink: "https://github.com/sfhemstreet/MapNWeather",
 };
@@ -137,7 +140,7 @@ export const traderBot: Project = {
              gave it tasks that yield data, and told it to run forever. When a 
              task yields data from a websocket it calls a function that starts the trading process.`,
 
-  features: ["Simple API", "OOP architecture", "Websockets", "asyncio"],
+  features: ["Simple API", "Object Oriented Programming", "Websockets", "asyncio"],
   githubLink: "https://github.com/sfhemstreet/TraderBot",
 };
 
@@ -173,10 +176,16 @@ export const choreApp: Project = {
     "SendGrid",
   ],
 
-  difficulties: `Session problems when interacting with the backend on mobile devices. 
-                I researched a lot before going with a session-cookie approach to track user sessions. 
-                It worked well till the first deployment and testing on a real mobile device.`,
-  solution: `I quickly changed to a Json Web Token approach, which worked well.`,
+  difficulties: `Cross-Origin Resource Sharing (CORS) and tracking user sessions, especially on mobile devices. 
+                I was torn between using session-cookies/JSON web tokens (JWT) to track user sessions,  
+                and ending up going with session-cookies.
+                It worked well till I tested the app on a real mobile device, and found that my servers httpOnly cookies
+                were being thrown away by my phones browser. 
+                `,
+  solution: `I switched to use JWTs to track user sessions.  
+            In the future I would architecture the app much differently 
+            (right now its really a distributed system, not an app), and take advantage of advances in cloud platforms.
+            `,
   features: [
     "Single Page Application",
     "User authentication",
@@ -189,7 +198,7 @@ export const choreApp: Project = {
 
 export const simpleWeight: Project = {
   name: "Simple Weight",
-  description: `Simple app to track daily caloric intake and body weight. 
+  description: `Cross platform mobile app (iOS/Android) to track daily caloric intake and body weight. 
                 View weight/calorie data on a chart, see information such 
                 as how much weight is lost on average per week, and 
                 average calorie intake is like on weekdays vs weekend.`,
@@ -207,25 +216,26 @@ export const simpleWeight: Project = {
     "Shared Preferences",
     "charts_flutter",
   ],
-  difficulties: `Finding a good solution for state management.`,
-  solution: `I went with the one the folks at Google apparently like, Provider.
-            I used its multi-provider to 'provide' multiple streams of immutable data.`,
+  difficulties: `Learning and working in a rapidly changing framework (Flutter). 
+                 Flutter has excellent documentation and Dart is an awesome language so it was enjoyable.
+                 Finding a state management solution for my use case took some research.`,
+  solution: `Reading documentation and experimenting. I ended up using a state management package called Provider.
+            Its lets you 'provide' multiple streams of immutable data down the 'widget' tree, 
+            so any widget can listen in and automatically update.`,
   features: [
     "Cross-platform mobile application",
     "iOS themed components",
     "Simple UI",
+    "Light and Dark themes, based on device setting"
   ],
   githubLink: "https://github.com/sfhemstreet/simple_weight",
 };
 
 export const rockPaperScissors: Project = {
   name: "Rock Paper Scissors",
-  description: `Rock, Paper, Scissors coding challenge from Frontend Mentor 
-                (https://www.frontendmentor.io/challenges/rock-paper-scissors-game-pTgwgvgH),
-                with 2 game modes, classic Rock, Paper, Scissors or the bonus 
-                Rock, Paper, Scissors, Lizard, Spock. I chose to add subtle animations 
-                to make the game play feel more organic, and added an option to change game play modes. 
-                You can [play it here](https://rock-paper-scissors.spencerhemstreet.now.sh/).`,
+  description: `I made this Rock, Paper, Scissors game after I saw it as a coding challenge on FrontendMentor.com.
+                It has 2 game modes, the classic Rock, Paper, Scissors and the bonus version
+                Rock, Paper, Scissors, Lizard, Spock. It follows the exact designs given by Frontend Mentor.`,
 
   images: [
     {
@@ -234,16 +244,17 @@ export const rockPaperScissors: Project = {
     },
   ],
   technologies: ["React", "Next.js", "TypeScript", "Styled-Components"],
-  difficulties: `Animating pieces between game play states.`,
-  solution: `Keep app layout simple, don't re-render game pieces once on screen.`,
-  features: ["Clean UI", "Followed design to the pixel"],
+  difficulties: `Structuring how stages of each round are executed. On a fast machine re-rendering a 
+                  game component can be undetectable but on mobile devices there is a flicker.`,
+  solution: `Keeping the app layout simple, and not re-rendering game pieces once they are on screen.`,
+  features: ["Responsive layout", "Followed design to the pixel"],
   githubLink: "https://github.com/sfhemstreet/rock_paper_scissors",
   liveLink: "https://rock-paper-scissors-six.now.sh/",
 };
 
 export const alienInvasion: Project = {
   name: "Alien Invasion",
-  description: `Save humanity from aliens by destroying them before they land. HTML5 canvas vanilla JS game.`,
+  description: `Save humanity from aliens by destroying them before they land. HTML5 canvas vanilla javascript game.`,
   images: [
     {
       src: images["alien-invasion-small"],
@@ -255,7 +266,7 @@ export const alienInvasion: Project = {
   solution: `Tweak level difficultly after testing. 
             Add easter egg magic blue box that replaces your ship's 
             rockets with a proton-7 laser temporarily.`,
-  features: ["Old school hard game play", "60fps", "Incredible graphics"],
+  features: ["Old school hard game play", "Explosions and secret lasers", "60fps", "Incredible graphics"],
   githubLink: "https://github.com/sfhemstreet/alien-invasion-js",
   liveLink: "https://sfhemstreet.github.io/alien-invasion-js/",
 };
