@@ -68,6 +68,8 @@ function contact() {
       const isValid = name === EMAIL ? checkEmail(value) : checkSpecial(value);
       this[`${name}Passes` as EmailValidatorKeys] = isValid;
 
+      isValid ? removeLabelColor(name) : makeLabelRed(name);
+
       if (
         this.namePasses &&
         this.messagePasses &&

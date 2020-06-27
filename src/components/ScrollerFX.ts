@@ -28,15 +28,12 @@ export function ScrollerFx(
   function checkElementsPosition() {
     elements = elements.filter((el) => {
       const positionFromTop = el.getBoundingClientRect().top;
-
       if (positionFromTop - windowHeight <= 0) {
         el.classList.replace(hiddenClassName, fxClassName);
         return false;
       }
       return true;
     });
-
-    console.log(elements)
   }
 
   function resizeHeight() {

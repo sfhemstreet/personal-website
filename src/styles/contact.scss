@@ -79,7 +79,7 @@ form {
     }
 
     &.red {
-      color: rgba(255, 0, 0, 0.411);
+      color: rgb(255, 0, 128);
     }
   }
 
@@ -164,7 +164,7 @@ button {
   padding: 0;
   margin: 20px 38px 20px 0px;
 
-  border: 1px solid theme.$dark-onSurfaceLowEmphasis;
+  border: 1px solid theme.$dark-primary;
   border-radius: 0px;
 
   color: theme.$dark-onSurfaceHighEmphasis;

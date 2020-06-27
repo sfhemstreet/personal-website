@@ -15,30 +15,20 @@ const INTRO_WAIT_TIME = 60000 * 3;
 // Key used to check and set intro view time in storage
 const INTRO_STORAGE_KEY = "aaepeeseec";
 
-export type TitleData = {
-  name: string;
-  skillSet: string;
-  jobStatus: string;
-};
-
 window.addEventListener("load", homePage, false);
 
 /**
  * Controls homepage animations and mounting of content.
  */
 function homePage() {
-  const TITLE_DATA: TitleData = {
-    name: "SPENCER_HEMSTREET",
-    skillSet: "FRONT_END",
-    jobStatus: "OPEN_TO_OPPORTUNITIES",
-  };
+  const titleData = [
+    "name: SPENCER_HEMSTREET",
+    "skillSet: FULL_STACK_DEVELOPER",
+  ];
 
   const showIntro: boolean = getHasViewedIntro();
   if (showIntro) {
-    const typewriterText = Object.keys(TITLE_DATA).map(
-      (key) => `${key}: ${TITLE_DATA[key as keyof TitleData]}`
-    );
-    typeWriterEffectIntro(typewriterText, onIntroOver);
+    typeWriterEffectIntro(titleData, onIntroOver);
     setHasViewedIntro();
   } else {
     onIntroOver();
@@ -53,7 +43,7 @@ function homePage() {
     const addressElement = getElement("address");
     const projectsButtonGradient = getElement(".projects-button-gradient");
 
-    mountTitle(TITLE_DATA);
+    mountTitle(titleData);
     revealElement(projectsButton);
     revealElement(projectsButtonGradient);
     revealElement(addressElement);
@@ -157,7 +147,7 @@ function setHasViewedIntro() {
 /**
  * Creates Title and appends it to the title container.
  */
-function mountTitle(titleData: TitleData) {
+function mountTitle(titleData: string[]) {
   const titleFrag = createTitle(titleData);
 
   getElement(".title-container").appendChild(titleFrag);
@@ -181,37 +171,24 @@ function unmountTitle() {
 
 /**
  * Creates Title document fragment
- * @param titleData
+ * @param string[]
  */
-function createTitle(titleData: TitleData): DocumentFragment {
+function createTitle(titleData: string[]): DocumentFragment {
   const docFrag = document.createDocumentFragment();
   const container = document.createElement("div");
   container.className = "title";
 
-  // Title
-  const title = document.createElement("h1");
-  const titleText = document.createTextNode(titleData.name.replace(/_/g, " "));
-  title.appendChild(titleText);
-
-  // SubTitle
-  const subTitle = document.createElement("h3");
-  const subText = document.createTextNode(
-    titleData.skillSet.toLowerCase().replace(/_/g, " ")
-  );
-  subTitle.appendChild(subText);
-
-  // Job
-  const jobTitle = document.createElement("h3");
-  const jobText = document.createTextNode(
-    titleData.jobStatus.toLowerCase().replace(/_/g, " ")
-  );
-  jobTitle.appendChild(jobText);
-  jobTitle.addEventListener("mouseover", replaceTextWithPlants, false);
-
-  // Append all
-  container.appendChild(title);
-  container.appendChild(subTitle);
-  container.appendChild(jobTitle);
+  for (let i = 0; i < titleData.length; i++) {
+    const el = document.createElement(i === 0 ? "h1" : "h3");
+    let textContent = titleData[i]
+      .substring(titleData[i].indexOf(":") + 1)
+      .replace(/_/g, " ");
+    if (i > 0) {
+      textContent = textContent.toLowerCase();
+    }
+    el.textContent = textContent;
+    container.appendChild(el);
+  }
   docFrag.appendChild(container);
 
   return docFrag;
@@ -386,24 +363,4 @@ function typeWriterEffectIntro(
     // Lets click end the animation.
     window.addEventListener("click", killTypeWriter, false);
   }, 300);
-}
-
-/**
- * Very crudely changes text to plant emoji,
- * symbolizing my desire for a job that will help me grow.
- *
- * @param this
- * @param ev
- */
-function replaceTextWithPlants(this: Element, ev: Event) {
-  if (!ev.currentTarget) return;
-
-  let text = "";
-  for (let i = 0; i < Math.ceil((this.textContent?.length || 18) / 2); i++) {
-    text += "&#127793;";
-  }
-
-  this.innerHTML = text;
-
-  ev.target?.removeEventListener("mouseover", replaceTextWithPlants, false);
 }
