@@ -282,7 +282,7 @@ function createProject(project: Project): DocumentFragment {
   const title = makeTitle(project.name, project.githubLink, project.liveLink);
   const description = makeSection("Description", project.description);
   const tech = makeList("Technologies", project.technologies);
-  const difficulties = makeSection("Difficulties", project.difficulties);
+  const difficulties = makeSection("Challenges", project.difficulties);
   const solution = makeSection("Solution", project.solution);
   const features = makeList("Features", project.features);
 

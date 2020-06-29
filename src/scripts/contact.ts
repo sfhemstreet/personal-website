@@ -1,8 +1,4 @@
-import {
-  getElement,
-  fadeSpecialElement,
-  revealElement,
-} from "./helpers";
+import { getElement, fadeSpecialElement, revealElement } from "./helpers";
 import { checkSpecial, checkEmail } from "./checkInput";
 import { sendEmail } from "./sendEmail";
 import "regenerator-runtime/runtime";
@@ -98,7 +94,7 @@ function contact() {
     const form = getElement("form", main);
     fadeSpecialElement(form);
 
-    setTimeout(async function() {
+    setTimeout(async function () {
       form.remove();
       createLoadingSpinner();
 
@@ -125,9 +121,10 @@ function contact() {
     const p = document.createElement("p");
     let textContent = "";
     if (!successful) {
-      textContent = "Sorry, something went wrong. You can email me at spencerhemstreet@gmail.com";
+      textContent =
+        "Sorry, something went wrong. You can email me at spencerhemstreet@gmail.com";
     } else {
-      textContent = `Thank you ${emailState.name} for messaging me!`
+      textContent = `Thank you ${emailState.name} for messaging me!`;
       setEmailTime();
     }
     p.textContent = textContent;
@@ -254,7 +251,7 @@ function createLoadingSpinner() {
   const spinner = document.createElement("div");
   spinner.classList.add("spinner");
 
-  [1,2,3,4].forEach(_ => {
+  [1, 2, 3, 4].forEach((_) => {
     const spinlet = document.createElement("div");
     spinlet.classList.add("spinlet");
     spinner.appendChild(spinlet);
@@ -335,7 +332,7 @@ function displayCannotEmail() {
     } else {
       time = `on ${date.toDateString()}`;
     }
-    
+
     textContent = `You emailed me ${time}. I will get back to you soon.`;
   }
   p.textContent = textContent;

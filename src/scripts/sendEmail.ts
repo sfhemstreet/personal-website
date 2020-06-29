@@ -35,13 +35,16 @@ export async function sendEmail(email: Email): Promise<boolean> {
 
   // Try to get JSON from response
   try {
-    const res: { Success: boolean } = await response.clone().json()
+    const res: { Success: boolean } = await response.clone().json();
     return res.Success;
   } catch (err) {
     // Try text instead of JSON
-    const res = await response.clone().text().catch(err => {
-      // console.log("Failed to read response.", err)
-    });
-    return res === "Success"
+    const res = await response
+      .clone()
+      .text()
+      .catch((err) => {
+        // console.log("Failed to read response.", err)
+      });
+    return res === "Success";
   }
 }
