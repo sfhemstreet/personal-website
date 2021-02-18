@@ -83,7 +83,7 @@ function homePage() {
       });
       mainElement.appendChild(docFrag);
 
-      // Apply scoll FX to each div in each project.
+      // Apply scroll FX to each div in each project.
       const projContainers = mainElement.querySelectorAll(".project");
       let projDivs: Element[] = [];
       projContainers.forEach((container) => {
@@ -200,7 +200,7 @@ function createTitle(titleData: string[]): DocumentFragment {
  */
 function createProject(project: Project): DocumentFragment {
   // Makes project title section with links.
-  const makeTitle = (name: string, gitURL: string, liveURL?: string) => {
+  const makeTitle = (name: string, gitURL?: string, liveURL?: string) => {
     const title = document.createElement("h1");
     title.textContent = name;
 
@@ -214,9 +214,12 @@ function createProject(project: Project): DocumentFragment {
       return link;
     };
 
-    const githubLink = makeLink(gitURL, "Code");
-    githubLink.classList.add("project-github");
-
+    // Not all projects have github links, check first.
+    const githubLink = gitURL ? makeLink(gitURL, "Code") : null;
+    if (githubLink) {
+      githubLink.classList.add("project-github");
+    }
+    
     // Not all projects have live links, check first.
     const liveLink = liveURL ? makeLink(liveURL, "Live") : null;
     if (liveLink) {
@@ -224,7 +227,7 @@ function createProject(project: Project): DocumentFragment {
     }
 
     const linkContainer = document.createElement("span");
-    linkContainer.appendChild(githubLink);
+    if (githubLink) linkContainer.appendChild(githubLink);
     if (liveLink) linkContainer.appendChild(liveLink);
 
     const titleContainer = document.createElement("div");

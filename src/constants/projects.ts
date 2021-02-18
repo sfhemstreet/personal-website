@@ -15,8 +15,59 @@ export type Project = {
   difficulties: string;
   solution: string;
   features: string[];
-  githubLink: string;
+  githubLink?: string;
   liveLink?: string;
+};
+
+export const pridePlaces: Project = {
+  name: `PridePlaces`,
+  description: `PridePlaces is a LGBTQ+ directory, 
+                focused on highlighting LGBTQ-owned and friendly businesses.`,
+
+  images: [
+    {
+      src: images["prideplaces"],
+      alt: "Screen shot of PridePlaces",
+    },
+  ],
+
+  technologies: [
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Styled-Components",
+    "SWR",
+    "Directus",
+    "MySQL",
+    "Auth0",
+    "AWS S3",
+  ],
+
+  features: [
+    "Server-side rendered listing and search pages",
+    "Over 200 pre-rendered pages with rehydration",
+    "Auth0 user authentication",
+    "Simple database management via Directus CMS",
+    "Business and User dashboards",
+  ],
+
+  difficulties: `The MVP version of PridePlaces was built using a Wordpress theme and a pile of plugins, and was incredibly slow. 
+                When I started I was tasked with re-vamping the site's performance.  
+                I quickly found that the WP theme was poorly built, the server was shared, and that it had been accessed by a third unknown party multiple times.`,
+
+  solution: `After talking to the CEO about possible solutions and the future of the company, it was clear the site would need to be moved from Wordpress. 
+            I built a plan to move the site from Wordpress to Next.js with Directus as our Headless CMS.  
+            First, I moved the Wordpress site to a dedicated server to decrease load time for the active Wordpress site. 
+            Then, an intern and I created our own component library using Styled-Components, working along side our design team. 
+            While building components, I built the Directus CMS server, and built all the necessary API routes to control user actions and fetching data in Next.js.
+            I choose to build the API routes in Next.js as an RESTful API gateway, so that moving from a CMS server to a serverless DB, like AWS DynamoDB or Fauna, would be relatively simple.
+            Once all the components were complete, we created the pages in Next.js, taking a hybrid rendering approach. 
+            All the main pages, Home, About, Contact, etc, are pre-rendered at build time and rehydrate on the client.
+            Listing pages, and the search page are rendered on the server. 
+            Dashboard pages, which do not require SEO, are all rendered on the client.
+            Global state, such as who is logged in, their favorite listings, etc, is handled using the React Context API.`,
+
+  liveLink: `https://prideplaces.com`,
 };
 
 export const mockEcommerce: Project = {
@@ -140,7 +191,12 @@ export const traderBot: Project = {
              gave it tasks that yield data, and told it to run forever. When a 
              task yields data from a websocket it calls a function that starts the trading process.`,
 
-  features: ["Simple API", "Object Oriented Programming", "Websockets", "asyncio"],
+  features: [
+    "Simple API",
+    "Object Oriented Programming",
+    "Websockets",
+    "asyncio",
+  ],
   githubLink: "https://github.com/sfhemstreet/TraderBot",
 };
 
@@ -226,7 +282,7 @@ export const simpleWeight: Project = {
     "Cross-platform mobile application",
     "iOS themed components",
     "Simple UI",
-    "Light and Dark themes, based on device setting"
+    "Light and Dark themes, based on device setting",
   ],
   githubLink: "https://github.com/sfhemstreet/simple_weight",
 };
@@ -266,7 +322,12 @@ export const alienInvasion: Project = {
   solution: `Tweak level difficultly after testing. 
             Add easter egg magic blue box that replaces your ship's 
             rockets with a proton-7 laser temporarily.`,
-  features: ["Old school hard game play", "Explosions and secret lasers", "60fps", "Incredible graphics"],
+  features: [
+    "Old school hard game play",
+    "Explosions and secret lasers",
+    "60fps",
+    "Incredible graphics",
+  ],
   githubLink: "https://github.com/sfhemstreet/alien-invasion-js",
   liveLink: "https://sfhemstreet.github.io/alien-invasion-js/",
 };
