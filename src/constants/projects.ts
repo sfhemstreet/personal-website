@@ -44,11 +44,10 @@ export const pridePlaces: Project = {
   ],
 
   features: [
-    "Server-side rendered listing and search pages",
-    "Over 200 pre-rendered pages with rehydration",
-    "Auth0 user authentication",
-    "Simple database management via Directus CMS",
-    "Business and User dashboards",
+    "Hybrid-rendered web app",
+    "RESTful API",
+    "Mobile first design",
+    "SSO authentication",
   ],
 
   difficulties: `The MVP version of PridePlaces was built using a Wordpress theme and a pile of plugins, and was incredibly slow. 
@@ -65,7 +64,8 @@ export const pridePlaces: Project = {
             All the main pages, Home, About, Contact, etc, are pre-rendered at build time and rehydrate on the client.
             Listing pages, and the search page are rendered on the server. 
             Dashboard pages, which do not require SEO, are all rendered on the client.
-            Global state, such as who is logged in, their favorite listings, etc, is handled using the React Context API.`,
+            Global state, such as who is logged in, their favorite listings, etc, is handled using the React Context API. 
+            The new PridePlaces is now much faster, flexible, and ready to grow.`,
 
   liveLink: `https://prideplaces.com`,
 };
