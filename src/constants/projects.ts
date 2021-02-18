@@ -333,6 +333,7 @@ export const alienInvasion: Project = {
 };
 
 export const projects = [
+  pridePlaces,
   mockEcommerce,
   mapAndWeather,
   simpleWeight,
