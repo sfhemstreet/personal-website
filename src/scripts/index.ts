@@ -285,9 +285,20 @@ function createProject(project: Project): DocumentFragment {
   const title = makeTitle(project.name, project.githubLink, project.liveLink);
   const description = makeSection("Description", project.description);
   const tech = makeList("Technologies", project.technologies);
-  const difficulties = makeSection("Challenges", project.difficulties);
-  const solution = makeSection("Solution", project.solution);
-  const features = makeList("Features", project.features);
+
+  // Project based sections
+  const difficulties = project.difficulties ? makeSection("Challenges", project.difficulties) : undefined;
+  const solution = project.solution ? makeSection("Solution", project.solution) : undefined;
+  const features = project.features ? makeList("Features", project.features) : undefined;
+  // Work based section
+  const overview = project.overview && makeSection("Overview", project.overview);
+
+  // Typescript undefined filter
+  const isHTMLDivElement = (item: HTMLDivElement | undefined): item is HTMLDivElement => {
+    return !!item
+  }
+
+  const optionalSections = overview ? [overview] : [features, difficulties, solution].filter(isHTMLDivElement);
 
   // Image Div and fill with images
   const images = document.createElement("div");
@@ -305,9 +316,7 @@ function createProject(project: Project): DocumentFragment {
     images,
     description,
     tech,
-    features,
-    difficulties,
-    solution,
+    ...optionalSections,
   ].forEach((el) => container.appendChild(el));
   docFrag.appendChild(container);
 

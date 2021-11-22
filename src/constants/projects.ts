@@ -12,11 +12,46 @@ export type Project = {
   description: string;
   images: Image[];
   technologies: string[];
-  difficulties: string;
-  solution: string;
-  features: string[];
+  difficulties?: string;
+  solution?: string;
+  features?: string[];
+  overview?: string;
   githubLink?: string;
   liveLink?: string;
+};
+
+export const alpacaMarkets: Project = {
+  name: "Alpaca Markets",
+  description: "Develop Alpaca Markets' main website and Ghost CMS blog, learn and support websites",
+  images: [
+    {
+      src: images["alpaca-markets"],
+      alt: "Screenshot of Alpaca Markets website",
+    },
+  ],
+  technologies: ["Python", "Flask", "SASS", "Javascript", "Ghost"],
+  overview: `Alpaca Markets is a startup that builds APIs for trading stocks and other assets.  
+             I work on the main public website, as well as their blog, learn and support websites, 
+             developing the pages and components based on Figma files from a designer.  
+             The main website uses Flask and SASS while the other sites use Ghost, a CMS that is customizable thru templates.`,
+  liveLink: "https://alpaca.markets"
+};
+
+export const bloombergBeta: Project = {
+  name: "Bloomberg Beta",
+  description: "Develop thisisnotadvice.work website",
+  images: [
+    {
+      src: images["thisisnotadvice"],
+      alt: "Screenshot of thisisnotadvice.work website",
+    },
+  ],
+  technologies: ["Gitbook"],
+  overview: `thisisnotadvice.work is a work/career advice website built using Gitbook, which out of the box has advanced features such as
+             full text search out of the box.  Gitbook is usually used for technical documentation, but for the topic of career advice it works 
+             very well as it allows users to search for the topic they wish to learn more about, such as 'Managing Others'. It also features 
+             built in analytics which show which topics get the most searches, which can be used to guide what topics should be covered by new articles for the site.`,
+  liveLink: "https://www.thisisnotadvice.work"
 };
 
 export const pridePlaces: Project = {
