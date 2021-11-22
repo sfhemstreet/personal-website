@@ -368,6 +368,8 @@ export const alienInvasion: Project = {
 };
 
 export const projects = [
+  alpacaMarkets,
+  bloombergBeta,
   pridePlaces,
   mockEcommerce,
   mapAndWeather,
