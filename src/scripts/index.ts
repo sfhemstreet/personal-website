@@ -23,7 +23,7 @@ window.addEventListener("load", homePage, false);
 function homePage() {
   const titleData = [
     "name: SPENCER_HEMSTREET",
-    "skillSet: FULL_STACK_DEVELOPER",
+    "skillSet: FRONT_END_DEVELOPER",
   ];
 
   const showIntro: boolean = getHasViewedIntro();
