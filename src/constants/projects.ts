@@ -1,9 +1,9 @@
-const png = require("../../public/projectImages/*.png");
-const jpg = require("../../public/projectImages/*.jpg");
-const images = { ...png, ...jpg };
+//const png = require("../../public/projectImages/*.png");
+//const jpg = require("../../public/projectImages/*.jpg");
+//const images = { ...png, ...jpg };
 
 export type Image = {
-  src: string;
+  src: URL;
   alt: string;
 };
 
@@ -25,7 +25,7 @@ export const alpacaMarkets: Project = {
   description: "Develop Alpaca Markets' main website and Ghost CMS blog, learn and support websites",
   images: [
     {
-      src: images["alpaca-markets"],
+      src: new URL("../../public/projectImages/alpaca-markets.jpg", import.meta.url),
       alt: "Screenshot of Alpaca Markets website",
     },
   ],
@@ -42,7 +42,7 @@ export const bloombergBeta: Project = {
   description: "Develop thisisnotadvice.work website",
   images: [
     {
-      src: images["thisisnotadvice"],
+      src: new URL("../../public/projectImages/thisisnotadvice.jpg", import.meta.url),
       alt: "Screenshot of thisisnotadvice.work website",
     },
   ],
@@ -61,7 +61,7 @@ export const pridePlaces: Project = {
 
   images: [
     {
-      src: images["prideplaces"],
+      src: new URL("../../public/projectImages/prideplaces.jpg", import.meta.url),
       alt: "Screen shot of PridePlaces",
     },
   ],
@@ -117,7 +117,7 @@ export const mockEcommerce: Project = {
     //   alt: "Mobile screenshot of mock emcommerce application",
     // },
     {
-      src: images["mock-ecommerce-desktop"],
+      src: new URL("../../public/projectImages/mock-ecommerce-desktop.png", import.meta.url),
       alt: "Desktop screenshot of mock emcommerce application",
     },
   ],
@@ -181,7 +181,7 @@ export const mapAndWeather: Project = {
     //   alt: "Screen shot of map and weather app",
     // },
     {
-      src: images["map-and-weather-medium"],
+      src: new URL("../../public/projectImages/map-and-weather-medium.jpg", import.meta.url),
       alt: "Screen shot of map and weather app with weather overlay",
     },
   ],
@@ -213,7 +213,7 @@ export const traderBot: Project = {
                 margin, order, wallet, execution and trade data.`,
   images: [
     {
-      src: images["traderbot-demo"],
+      src: new URL("../../public/projectImages/traderbot-demo.png", import.meta.url),
       alt: "Screen shot of Trader Bot automated trades",
     },
   ],
@@ -248,7 +248,7 @@ export const choreApp: Project = {
                 receive new chores via email, and receive points for every chore completed.`,
   images: [
     {
-      src: images["chore-home"],
+      src: new URL("../../public/projectImages/chore-home.png", import.meta.url),
       alt: "Screen shot of chore app home page",
     },
     // { src: images["chore-group"], alt: "Screen shot of chore app group" },
@@ -295,7 +295,7 @@ export const simpleWeight: Project = {
                 average calorie intake is like on weekdays vs weekend.`,
   images: [
     {
-      src: images["simple-weight-small"],
+      src: new URL("../../public/projectImages/simple-weight-small.jpg", import.meta.url),
       alt: "Screen shot of simple weight app in use",
     },
   ],
@@ -330,7 +330,7 @@ export const rockPaperScissors: Project = {
 
   images: [
     {
-      src: images["rock-paper-scissors-small"],
+      src: new URL("../../public/projectImages/rock-paper-scissors-small.jpg", import.meta.url),
       alt: "Rock Paper Scissors game screen shot",
     },
   ],
@@ -348,7 +348,7 @@ export const alienInvasion: Project = {
   description: `Save humanity from aliens by destroying them before they land. HTML5 canvas vanilla javascript game.`,
   images: [
     {
-      src: images["alien-invasion-small"],
+      src: new URL("../../public/projectImages/alien-invasion-small.jpg", import.meta.url),
       alt: "Screen shot of Alien Invasion game play",
     },
   ],
