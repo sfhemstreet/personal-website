@@ -4,13 +4,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel ./src/pages/index.html ./src/pages/contact.html ./src/pages/about.html",
-    "build": "rm -rf dist && rm -rf docs && parcel build ./src/pages/index.html ./src/pages/contact.html ./src/pages/about.html --no-source-maps --out-dir docs --public-url ./",
-    "watch": "parcel watch index.html"
+    "build": "rm -rf dist && rm -rf docs && parcel build ./src/pages/index.html ./src/pages/contact.html ./src/pages/about.html --no-source-maps --dist-dir docs --public-url ./"
   },
   "devDependencies": {
     "@parcel/transformer-sass": "^2.2.0",
     "autoprefixer": "^10.4.2",
     "parcel": "^2.2.0",
+    "parcel-plugin-remove-index-html": "^0.1.0",
     "postcss": "^8.1.0",
     "sass": "^1.26.7",
     "typescript": "^3.9.3"
